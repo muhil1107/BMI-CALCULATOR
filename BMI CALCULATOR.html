@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>BMI Calculator</title>
+</head>
+<body>
+        <form action="">
+            <center>
+            <table border="3" width="30%" height="50%" >
+                <h1>BMI Calculator</h1>
+                <tr>
+                    <th>
+                        Weight:</th> <td><input type="number" id="weight" placeholder="Enter your weight in kg" required>
+                            <select  id="w">
+                                <option value="pounds">pounds</option>
+                                <option value="kg">kg</option>
+                            </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Height: </th> <td><input type="number" id="height" placeholder="Enter your height in cm" required>
+                        <select  id="h">
+                                <option value="inches">inches</option>
+                                <option value="cm">cm</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Result:</th> <td> <input type="text" id="result" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        <button type="button" onclick="calculateBMI()">Calculate BMI</button>
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        <input type="">
+                    </th>
+                </tr>
+            </table>
+        </center>
+        </form>
+    <script>
+        function calculateBMI(){
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const h1=height/100;
+            const weightUnit = document.getElementById('w').value;
+            const heightUnit = document.getElementById('h').value;
+            
+             // weight == pounds  and height == inches
+            if(weightUnit=="pounds" && heightUnit=="inches"){
+                var bmi = (703*weight) / (height*height);
+                document.getElementById('result').value = bmi.toFixed(2);
+                if(bmi<=18.5){
+                alert("Your Underweight.. Tooo Bad");
+                }
+                if(bmi>18.5 && bmi<=25){
+                alert("Normal weight maintain your weight as this...");
+                }
+                if(bmi>25){
+                alert("Your Overweight. Try to reduce your weight");
+                }
+            } 
+
+            //weight=kilogram  height == centimeter
+            else if(weightUnit=="kg" && heightUnit=="cm"){
+                const bmi = weight / (h1*h1);
+                document.getElementById('result').value = bmi.toFixed(2);
+                
+                if(bmi<=18.5){
+                alert("Your Underweight.. Tooo Bad");
+                }
+                if(bmi>18.5 && bmi<=25){
+                alert("Normal weight maintain your weight as this...");
+                }
+                if(bmi>25){
+                alert("Your Overweight. Try to reduce your weight");
+                }
+            }
+
+            else {
+                alert("Enter a valid weight and height as per asked");
+            }
+        }
+    </script>
+</body>
+</html>
